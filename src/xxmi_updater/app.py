@@ -11,7 +11,7 @@ if __name__ == '__main__':
 
     if '__compiled__' in globals():
         # Nuitka (release build): `XXMI Updater\XXMI Updater.exe`
-        root_path = Path(sys.executable).parent
+        root_path = Path(sys.argv[0]).resolve().parent
     elif getattr(sys, 'frozen', False):
         # Pyinstaller (debug build): `XXMI Updater\XXMI Updater.exe`
         root_path = Path(sys.executable).parent
