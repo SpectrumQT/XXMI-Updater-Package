@@ -35,6 +35,7 @@ class LauncherManagerConfig:
     auto_update: bool = True
     update_channel: str = 'MSI'
     installation_dir: str = ''
+    source_dir: str = ''
     create_shortcut: bool = True
     instance: str = ''
 
@@ -58,8 +59,18 @@ class LauncherPackage(Package):
             self.metadata.asset_name_format = 'XXMI-Launcher-Portable-v%s.zip'
 
     def download_latest_version(self):
+        if Config.Launcher.source_dir:
+            self.downloaded_asset_path = Path(Config.Launcher.source_dir)
+            return
+
         self.package_path = Path(Config.Launcher.installation_dir) / 'Resources' / 'Packages' / self.metadata.package_name
         super().download_latest_version()
+
+    def load_manifest(self):
+        if Config.Launcher.source_dir:
+            return
+
+        super().load_manifest()
 
     def get_installed_version(self):
         return '0.0.0'

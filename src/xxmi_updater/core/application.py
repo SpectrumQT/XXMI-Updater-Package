@@ -156,12 +156,15 @@ class Application:
                             help='Launcher installation directory')
         parser.add_argument('-s', '--shortcut', type=bool, default=True,
                             help='Default state of "Create Desktop Shortcut" checkbox')
+        parser.add_argument('-sd', '--src_dir', type=str, default="",
+                            help='Downloaded launcher assets directory')
         self.args = parser.parse_args()
 
         Config.Config.load()
 
         Config.Launcher.update_channel = str(self.args.channel)
         Config.Launcher.installation_dir = str(self.args.dist_dir)
+        Config.Launcher.source_dir = str(self.args.src_dir)
         # Config.Launcher.create_shortcut = self.args.shortcut and self.args.mode != Mode.Update
         Config.Launcher.instance = self.instance
 
