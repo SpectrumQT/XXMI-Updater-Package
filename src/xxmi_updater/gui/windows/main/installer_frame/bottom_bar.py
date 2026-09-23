@@ -38,7 +38,7 @@ class DownloadProgressBar(UIProgressBar):
     def __init__(self, master):
         super().__init__(
             orientation='horizontal',
-            height=32,
+            height=12,
             corner_radius=0,
             master=master)
         self.subscribe_show(Events.GUI.InstallerFrame.StageUpdate, lambda event: event.stage == Stage.Download)
@@ -66,7 +66,7 @@ class InstallationProgressBar(UIProgressBar):
         super().__init__(
             mode='indeterminate',
             orientation='horizontal',
-            height=32,
+            height=12,
             corner_radius=0,
             master=master)
         self.subscribe_show(Events.GUI.InstallerFrame.StageUpdate, lambda event: event.stage == Stage.Busy)
@@ -82,7 +82,7 @@ class InstallationProgressBar(UIProgressBar):
 class LeftStatusText(UIText):
     def __init__(self, master):
         super().__init__(x=15,
-                         y=415,
+                         y=435,
                          text='',
                          font=('Roboto', 18),
                          fill='#f0f0f0',
@@ -150,7 +150,7 @@ class LeftStatusText(UIText):
 class RightStatusText(UIText):
     def __init__(self, master):
         super().__init__(x=839,
-                         y=415,
+                         y=435,
                          text='',
                          font=('Roboto', 18),
                          fill='#f0f0f0',
