@@ -195,7 +195,7 @@ class Application:
         self.exit()
 
     def install_launcher(self):
-        self.run_as_thread(self.package_manager.update_packages, force=True, reinstall=True, packages=['Launcher'])
+        self.run_as_thread(self.package_manager.update_packages, no_check=bool(Config.Launcher.source_dir), force=True, reinstall=True, packages=['Launcher'])
 
     def in_updater_mode(self):
         return self.mode == Mode.Update
