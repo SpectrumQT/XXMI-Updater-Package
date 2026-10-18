@@ -507,9 +507,9 @@ class PackageManager:
         # Query GitHub for the latest available package version
         current_time = int(time.time())
         # Force update check if installation is pending or the last check time is somewhere in the future
-        force_check = not no_check and (force or install or package.cfg.update_check_time > current_time)
+        force_check = force or install or package.cfg.update_check_time > current_time
         # We're going to throttle query to 1 per hour by default, else user can be temporary banned by GitHub
-        if force_check or package.cfg.update_check_time + 3600 < current_time:
+        if not no_check and (force_check or package.cfg.update_check_time + 3600 < current_time):
             package.cfg.update_check_time = current_time
             if self.api_connection_refused:
                 return

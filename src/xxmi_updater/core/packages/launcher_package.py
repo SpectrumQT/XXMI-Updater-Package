@@ -58,6 +58,11 @@ class LauncherPackage(Package):
         if Config.Launcher.update_channel == 'ZIP':
             self.metadata.asset_name_format = 'XXMI-Launcher-Portable-v%s.zip'
 
+    def detect_latest_version(self):
+        if Config.Launcher.source_dir:
+            return
+        super().detect_latest_version()
+
     def download_latest_version(self):
         if Config.Launcher.source_dir:
             self.downloaded_asset_path = Path(Config.Launcher.source_dir)
